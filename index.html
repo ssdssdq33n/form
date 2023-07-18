@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+<body>
+    <div class="app">
+      <form action="" method="POST" class="form_1">
+        <h1>Thành viên đăng ký</h1>
+        <p>Cùng học lập trình tại Green Academy</p>
+        <div class="form_group">
+          <label for="fullname" class="form_label">Tên đầy đủ</label>
+          <input type="text" id="fullname" name="fullname" placeholder=" VD:Nguyễn Hoàng Tuấn Anh">
+          <span class="form_message"></span>
+        </div>
+        <div class="form_group">
+          <label for="email" class="form_label">Email</label>
+          <input type="text" name="email" id="email" placeholder=" VD:hoangtanh21102002@gmail.com">
+          <span class="form_message"></span>
+        </div>
+        <div class="form_group">
+          <label for="password" class="form_label">Mật khẩu</label>
+          <input type="password" name="password" id="password" placeholder=" Nhập mật khẩu">
+          <span class="form_message"></span>
+        </div>
+        <div class="form_group">
+          <label for="password_confirmation" class="form_label">Nhập lại mật khẩu</label>
+          <input type="password" name="password_confirmation" id="password_confirmation" placeholder=" Nhập lại mật khẩu">
+          <span class="form_message"></span>
+        </div>
+        <input type="submit" value="Đăng ký" class="submit_1">
+      </form>
+    </div>
+
+
+    <script src="./assets/css/main.js"></script>
+    <script>
+      validator({
+        form:'.form_1',
+        formMessage:'.form_message',
+        formParent:'.form_group',
+        rules:[
+          validator.isRequied('#fullname'),
+          validator.isRequied('#email'),
+          validator.isEmail('#email'),
+          validator.isRequied('#password'),
+          validator.minLength('#password',6),
+          validator.isRequied('#password_confirmation'),
+          validator.isConfirmation('#password_confirmation',function(){
+            return document.querySelector('.form_1 #password').value
+          }),
+        ],
+        onsubmit:function(data){
+          console.log(data)
+        }
+      })
+    </script>
+</body>
+</html>
